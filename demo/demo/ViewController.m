@@ -95,7 +95,6 @@
        
         [symptomBtn addTarget:self action:@selector(clickSymptomBtnWithButton:) forControlEvents:UIControlEventTouchUpInside];
         Symptom *symptom = self.fetchedResultsController.fetchedObjects[i];
-        NSLog(@"%@---%d",symptom.symptomName,(int)symptomsCount);
         [self setAtributesWithButton:symptomBtn andBtnTitleName:symptom.symptomName];
         // 3.4 将按钮加到btnArray数组和self.view
         [tempArr  addObject:symptomBtn];
@@ -113,8 +112,9 @@
     [self.view addSubview:scrollView];
     
     // 5.2 创建每个展示疾病相似度的sickView
-    // 假设疾病有5种
-    int sickCount = 8;
+    // 查询数据库中的疾病
+    [self fetchResultWithEntityName:@"Sickness" sortDescriptorWithKey:@"sicknessID"];
+    int sickCount = (int)self.fetchedResultsController.fetchedObjects.count;
     for (int i = 0; i < sickCount; i++){
         //  创建sickView用来存放进度条和label
         UIView *sickView = [[UIView alloc]init];
@@ -142,6 +142,8 @@
         
         //  创建疾病名称sicklabel
         UILabel *sickLabel = [self createSickLabelWithCurrentMaxY:CGRectGetMaxY(circleChart.frame)];
+        Sickness *sickness = self.fetchedResultsController.fetchedObjects[i];
+        sickLabel.text = sickness.sicknessName;
         
         // 将进度条和疾病名称添加到sickView
         [sickView addSubview:circleChart];
@@ -157,6 +159,16 @@
     NSLog(@"查询结果变化了");
 }
 
+// 查询
+- (void)fetchResultWithEntityName:(NSString *)entity sortDescriptorWithKey:(NSString *)key
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key ascending:YES];
+    request.sortDescriptors = @[sort];
+    _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    [self.fetchedResultsController performFetch:NULL];
+}
+
 // 点击症状按钮
 - (void)clickSymptomBtnWithButton:(UIButton *)sickButton
 {
@@ -170,7 +182,7 @@
     CGFloat sicklabelH = 26;
     CGFloat sicklabelW = 93;
     UILabel *sickLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, sickLabelY,sicklabelW, sicklabelH)];
-    sickLabel.text = @"虚火旺盛";
+
     sickLabel.font = [UIFont systemFontOfSize:14];
     sickLabel.textAlignment = NSTextAlignmentCenter;
     [sickLabel.layer setCornerRadius:13.0];
@@ -193,7 +205,9 @@
     UIScrollView * scrollView = [[UIScrollView alloc]init];
     scrollView.frame = CGRectMake(scrollViewX, scrollViewY, scrollviewW,scrollviewH);
     scrollView.backgroundColor = [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1];
-    scrollView.contentSize = self.view.frame.size;
+    CGSize contentSize = self.view.frame.size;
+    contentSize.height = contentSize.height * 0.5;
+    scrollView.contentSize = contentSize ;
     scrollView.scrollEnabled = YES;
     return scrollView;
 }
