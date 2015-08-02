@@ -13,8 +13,11 @@
 #import "Symptom.h"
 #import "QXCoreDataTools.h"
 
-@interface ViewController ()
+@interface ViewController ()<NSFetchedResultsControllerDelegate>
+//用于存放症状按钮
 @property (strong,nonatomic)NSArray *symptomBtnArray;
+//coreData的查询结果控制器
+@property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -24,6 +27,18 @@
         _symptomBtnArray = [[NSArray alloc]init ];
     }
     return _symptomBtnArray;
+}
+
+- (NSFetchedResultsController *)fetchedResultsController{
+    if (_fetchedResultsController == nil) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Symptom"];
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"symptomID" ascending:YES];
+        request.sortDescriptors = @[sort];
+        _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
 }
 
 - (void)viewDidLoad {
@@ -62,20 +77,27 @@
     CGFloat symptomH = 22;
     
     NSMutableArray *tempArr = [[NSMutableArray alloc]init];
-    for (int i = 0; i < 17; i++) {
-        // 3.1 设置按钮的frame属性
-        // 计算每个单元格所在的列的索引
+    
+    //执行查询
+    [self.fetchedResultsController performFetch:NULL];
+    NSInteger symptomsCount = self.fetchedResultsController.fetchedObjects.count;
+    for (int i = 0; i < symptomsCount; i++) {
+        // 3.1 设置按钮的frame
+        // 计算每个按钮所在的列的索引
         int colIdx = i % columns;
-        // 计算每个单元格的行索引
+        // 计算每个按钮的行索引
         int rowIdx = i / columns;
         CGFloat symptomX = marginLeft + colIdx * (symptomW + marginX);
         CGFloat symptomY = marginTop + rowIdx * (symptomH + marginY);
-        
+        // 3.2 创建并设置按钮的属性
         UIButton *symptomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         symptomBtn.frame = CGRectMake(symptomX, symptomY, symptomW, symptomH);
-        [self setAtributesWithButton:symptomBtn];
+       
         [symptomBtn addTarget:self action:@selector(clickSymptomBtnWithButton:) forControlEvents:UIControlEventTouchUpInside];
-        // 3.2 将按钮加到btnArray数组和self.view
+        Symptom *symptom = self.fetchedResultsController.fetchedObjects[i];
+        NSLog(@"%@---%d",symptom.symptomName,(int)symptomsCount);
+        [self setAtributesWithButton:symptomBtn andBtnTitleName:symptom.symptomName];
+        // 3.4 将按钮加到btnArray数组和self.view
         [tempArr  addObject:symptomBtn];
         [self.view addSubview:symptomBtn];
     }
@@ -129,6 +151,13 @@
     }
 }
 
+#pragma mark -----查询结果控制器的代理方法
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    NSLog(@"查询结果变化了");
+}
+
+// 点击症状按钮
 - (void)clickSymptomBtnWithButton:(UIButton *)sickButton
 {
     sickButton.selected = !sickButton.selected;
@@ -170,14 +199,14 @@
 }
 
 //设置症状按钮的属性
-- (void)setAtributesWithButton:(UIButton *)btn
+- (void)setAtributesWithButton:(UIButton *)btn andBtnTitleName:(NSString *)btnTitleName
 {
     btn.backgroundColor = [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1];
     btn.titleLabel.font = [UIFont systemFontOfSize: 11];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"symptom_btn_nomal.png"] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"confirm_btn_disable.png"] forState:UIControlStateSelected];
-    [btn setTitle:@"口中乏味" forState:UIControlStateNormal];
+    [btn setTitle:btnTitleName forState:UIControlStateNormal];
     [btn.layer setCornerRadius:11];
     [btn.layer setMasksToBounds:YES];
 }
@@ -203,20 +232,22 @@
     return confirmBtn;
 }
 
+
+
 //插入数据
 - (void)writeData
 {
-    
+    //向Sickness实体中插入疾病数据
     //    Sickness *sickness3 = [NSEntityDescription insertNewObjectForEntityForName:@"Sickness" inManagedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext];
     //    sickness3.sicknessName = @"鼻渊";
     //    sickness3.sicknessID = @(1596);
-    //
+    //向Symptom实体中插入症状数据
     //    Symptom *symptom1 = [NSEntityDescription insertNewObjectForEntityForName:@"Symptom" inManagedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext];
     //    symptom1.symptomName = @"鼻塞";
     //    symptom1.symptomID = @(11);
     //    symptom1.isMainSymptom = @(1);
     //    symptom1.sickness = sickness3;
-    //
+    //保存上下文
     //    [[QXCoreDataTools sharedCoreDataTools]saveContext];
 }
 
