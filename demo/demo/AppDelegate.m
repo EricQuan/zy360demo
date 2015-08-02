@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "QXCoreDataTools.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    NSLog(@"%@",NSHomeDirectory());
+    
+    //初始化coreData数据库
+    [[QXCoreDataTools sharedCoreDataTools] setupCoreDataWithModelName:@"Model" dbName:@"my.db"];
+    
     return YES;
 }
 

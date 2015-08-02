@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import "PNChart.h"
 #import "PNCircleChart.h"
+#import "Sickness.h"
+#import "Symptom.h"
+#import "QXCoreDataTools.h"
 
 @interface ViewController ()
 @property (strong,nonatomic)NSArray *symptomBtnArray;
@@ -25,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self writeData];
     
     // 1.导航条的文字
     UILabel *topLabel = [[UILabel alloc]init];
@@ -198,6 +202,24 @@
     [confirmBtn.layer setMasksToBounds:YES];
     return confirmBtn;
 }
+
+//插入数据
+- (void)writeData
+{
+    
+    //    Sickness *sickness3 = [NSEntityDescription insertNewObjectForEntityForName:@"Sickness" inManagedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext];
+    //    sickness3.sicknessName = @"鼻渊";
+    //    sickness3.sicknessID = @(1596);
+    //
+    //    Symptom *symptom1 = [NSEntityDescription insertNewObjectForEntityForName:@"Symptom" inManagedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext];
+    //    symptom1.symptomName = @"鼻塞";
+    //    symptom1.symptomID = @(11);
+    //    symptom1.isMainSymptom = @(1);
+    //    symptom1.sickness = sickness3;
+    //
+    //    [[QXCoreDataTools sharedCoreDataTools]saveContext];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Sickness" representedClassName="Sickness" syncable="YES">
+        <attribute name="sicknessID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sicknessName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="symptoms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Symptom" inverseName="sickness" inverseEntity="Symptom" syncable="YES"/>
+    </entity>
+    <entity name="Symptom" representedClassName="Symptom" syncable="YES">
+        <attribute name="isMainSymptom" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="symptomID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="symptomName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sickness" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sickness" inverseName="symptoms" inverseEntity="Sickness" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Sickness" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Symptom" positionX="196" positionY="-18" width="128" height="103"/>
+    </elements>
+</model>

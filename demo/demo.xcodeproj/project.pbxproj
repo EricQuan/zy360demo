@@ -35,6 +35,11 @@
 		3A3DD3D91B68C8A30037745C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3DD3D81B68C8A30037745C /* UIKit.framework */; };
 		3A3DD3DB1B68C8AD0037745C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3DD3DA1B68C8AD0037745C /* Foundation.framework */; };
 		3A3DD3DE1B68CE820037745C /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DD3DD1B68CE820037745C /* UICountingLabel.m */; };
+		3A3E50921B6DF5260037FB02 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50901B6DF5260037FB02 /* Model.xcdatamodeld */; };
+		3A3E50951B6DF6C20037FB02 /* QXCoreDataTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50941B6DF6C20037FB02 /* QXCoreDataTools.m */; };
+		3A3E50A91B6E009B0037FB02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E50A81B6E009B0037FB02 /* CoreData.framework */; };
+		3A3E50AC1B6E06910037FB02 /* Sickness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50AB1B6E06910037FB02 /* Sickness.m */; };
+		3A3E50AF1B6E06920037FB02 /* Symptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50AE1B6E06920037FB02 /* Symptom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +106,14 @@
 		3A3DD3DA1B68C8AD0037745C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A3DD3DC1B68CE820037745C /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		3A3DD3DD1B68CE820037745C /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		3A3E50911B6DF5260037FB02 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3A3E50931B6DF6C20037FB02 /* QXCoreDataTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QXCoreDataTools.h; sourceTree = "<group>"; };
+		3A3E50941B6DF6C20037FB02 /* QXCoreDataTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXCoreDataTools.m; sourceTree = "<group>"; };
+		3A3E50A81B6E009B0037FB02 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3A3E50AA1B6E06910037FB02 /* Sickness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sickness.h; path = demo/Sickness.h; sourceTree = "<group>"; };
+		3A3E50AB1B6E06910037FB02 /* Sickness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sickness.m; path = demo/Sickness.m; sourceTree = "<group>"; };
+		3A3E50AD1B6E06920037FB02 /* Symptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Symptom.h; path = demo/Symptom.h; sourceTree = "<group>"; };
+		3A3E50AE1B6E06920037FB02 /* Symptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Symptom.m; path = demo/Symptom.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A3E50A91B6E009B0037FB02 /* CoreData.framework in Frameworks */,
 				3A3DD3DB1B68C8AD0037745C /* Foundation.framework in Frameworks */,
 				3A3DD3D91B68C8A30037745C /* UIKit.framework in Frameworks */,
 				3A3DD3D71B68C8930037745C /* QuartzCore.framework in Frameworks */,
@@ -128,11 +142,10 @@
 		3A3DD36F1B6880320037745C = {
 			isa = PBXGroup;
 			children = (
-				3A3DD3DA1B68C8AD0037745C /* Foundation.framework */,
-				3A3DD3D81B68C8A30037745C /* UIKit.framework */,
-				3A3DD3D61B68C8930037745C /* QuartzCore.framework */,
-				3A3DD3D41B68C8880037745C /* CoreGraphics.framework */,
-				3A3DD3A11B68C8330037745C /* PNChart */,
+				3A3E50AD1B6E06920037FB02 /* Symptom.h */,
+				3A3E50AE1B6E06920037FB02 /* Symptom.m */,
+				3A3E50AA1B6E06910037FB02 /* Sickness.h */,
+				3A3E50AB1B6E06910037FB02 /* Sickness.m */,
 				3A3DD37A1B6880320037745C /* demo */,
 				3A3DD3941B6880320037745C /* demoTests */,
 				3A3DD3791B6880320037745C /* Products */,
@@ -155,6 +168,9 @@
 				3A3DD3801B6880320037745C /* AppDelegate.m */,
 				3A3DD3821B6880320037745C /* ViewController.h */,
 				3A3DD3831B6880320037745C /* ViewController.m */,
+				3A3E50931B6DF6C20037FB02 /* QXCoreDataTools.h */,
+				3A3E50941B6DF6C20037FB02 /* QXCoreDataTools.m */,
+				3A3E50901B6DF5260037FB02 /* Model.xcdatamodeld */,
 				3A3DD3851B6880320037745C /* Main.storyboard */,
 				3A3DD37B1B6880320037745C /* Supporting Files */,
 			);
@@ -184,6 +200,7 @@
 		3A3DD3951B6880320037745C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A3E508F1B6DF4CC0037FB02 /* frameworks */,
 				3A3DD3961B6880320037745C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -230,7 +247,20 @@
 				3A3DD3C31B68C8330037745C /* PNScatterChartDataItem.m */,
 			);
 			name = PNChart;
-			path = demo/PNChart;
+			path = ../demo/PNChart;
+			sourceTree = "<group>";
+		};
+		3A3E508F1B6DF4CC0037FB02 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A3E50A81B6E009B0037FB02 /* CoreData.framework */,
+				3A3DD3DA1B68C8AD0037745C /* Foundation.framework */,
+				3A3DD3D81B68C8A30037745C /* UIKit.framework */,
+				3A3DD3D61B68C8930037745C /* QuartzCore.framework */,
+				3A3DD3D41B68C8880037745C /* CoreGraphics.framework */,
+				3A3DD3A11B68C8330037745C /* PNChart */,
+			);
+			name = frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,10 +363,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A3E50AC1B6E06910037FB02 /* Sickness.m in Sources */,
 				3A3DD3CA1B68C8330037745C /* PNLineChart.m in Sources */,
 				3A3DD3C51B68C8330037745C /* PNBarChart.m in Sources */,
 				3A3DD3C81B68C8330037745C /* PNColor.m in Sources */,
 				3A3DD3CF1B68C8330037745C /* PNRadarChart.m in Sources */,
+				3A3E50AF1B6E06920037FB02 /* Symptom.m in Sources */,
 				3A3DD3D01B68C8330037745C /* PNRadarChartDataItem.m in Sources */,
 				3A3DD3841B6880320037745C /* ViewController.m in Sources */,
 				3A3DD3C41B68C8330037745C /* PNBar.m in Sources */,
@@ -348,8 +380,10 @@
 				3A3DD3CE1B68C8330037745C /* PNPieChartDataItem.m in Sources */,
 				3A3DD37E1B6880320037745C /* main.m in Sources */,
 				3A3DD3CB1B68C8330037745C /* PNLineChartData.m in Sources */,
+				3A3E50951B6DF6C20037FB02 /* QXCoreDataTools.m in Sources */,
 				3A3DD3D11B68C8330037745C /* PNScatterChart.m in Sources */,
 				3A3DD3C71B68C8330037745C /* PNCircleChart.m in Sources */,
+				3A3E50921B6DF5260037FB02 /* Model.xcdatamodeld in Sources */,
 				3A3DD3DE1B68CE820037745C /* UICountingLabel.m in Sources */,
 				3A3DD3CD1B68C8330037745C /* PNPieChart.m in Sources */,
 				3A3DD3C91B68C8330037745C /* PNGenericChart.m in Sources */,
@@ -562,6 +596,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3A3E50901B6DF5260037FB02 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3A3E50911B6DF5260037FB02 /* Model.xcdatamodel */,
+			);
+			currentVersion = 3A3E50911B6DF5260037FB02 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3A3DD3701B6880320037745C /* Project object */;
 }
