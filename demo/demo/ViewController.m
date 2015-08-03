@@ -19,6 +19,10 @@
 //coreData的查询结果控制器
 @property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;
 
+@property (strong,nonatomic) Symptom *tempSymptom;
+
+@property (strong,nonatomic) NSMutableArray *tempSick;
+@property (strong,nonatomic) Sickness *sicknessObj;
 @end
 
 @implementation ViewController
@@ -30,13 +34,13 @@
 }
 
 - (NSFetchedResultsController *)fetchedResultsController{
-    if (_fetchedResultsController == nil) {
+//    if (_fetchedResultsController == nil) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Symptom"];
         NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"symptomID" ascending:YES];
         request.sortDescriptors = @[sort];
         _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         _fetchedResultsController.delegate = self;
-    }
+//    }
     
     return _fetchedResultsController;
 }
@@ -77,10 +81,27 @@
     CGFloat symptomH = 22;
     
     NSMutableArray *tempArr = [[NSMutableArray alloc]init];
-    
-    //执行查询
+
+    // 执行查询,过滤掉重复的症状
+    // 这里用到两个临时数组和一个成员变量，将查询到的所有结果放在一个临时数组里面，遍历，如果有“头痛”就把这个对象赋值给成员变量，如果没有“头痛”就放到另一个临时数组里面，最后再把成员变量添加到第二个临时数组里面，方法比较复杂，抽时间看看有没有更好的过滤方法
+    [self fetchedResultsController];
     [self.fetchedResultsController performFetch:NULL];
-    NSInteger symptomsCount = self.fetchedResultsController.fetchedObjects.count;
+    NSMutableArray *tempArray1 = (NSMutableArray *)self.fetchedResultsController.fetchedObjects;
+    NSMutableArray *tempArray2 = [NSMutableArray array];
+    NSLog(@"%ld",tempArray1.count);
+    for (int index = 0; index < tempArray1.count; index++) {
+        Symptom *s = tempArray1[index];
+        if ([s.symptomName isEqualToString:@"头痛"]) {
+            self.tempSymptom = s;
+        }else{
+            [tempArray2 addObject:s];
+        }
+    }
+    NSLog(@"------%@,%@",self.tempSymptom,tempArray2);
+    [tempArray2 addObject:self.tempSymptom];
+//    NSLog(@"----%@,%d",tempArray2,(int)tempArray2.count);
+    
+    NSInteger symptomsCount = tempArray2.count;
     for (int i = 0; i < symptomsCount; i++) {
         // 3.1 设置按钮的frame
         // 计算每个按钮所在的列的索引
@@ -92,9 +113,9 @@
         // 3.2 创建并设置按钮的属性
         UIButton *symptomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         symptomBtn.frame = CGRectMake(symptomX, symptomY, symptomW, symptomH);
-       
         [symptomBtn addTarget:self action:@selector(clickSymptomBtnWithButton:) forControlEvents:UIControlEventTouchUpInside];
-        Symptom *symptom = self.fetchedResultsController.fetchedObjects[i];
+        Symptom *symptom = tempArray2[i];
+        symptomBtn.tag = (int)symptom.symptomID;
         [self setAtributesWithButton:symptomBtn andBtnTitleName:symptom.symptomName];
         // 3.4 将按钮加到btnArray数组和self.view
         [tempArr  addObject:symptomBtn];
@@ -104,6 +125,7 @@
 
     // 4.确定按钮
     UIButton *confirmBtn = [self createConfirmBtn];
+    [confirmBtn addTarget:self action:@selector(confirmBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmBtn];
     
     // 5.相关疾病
@@ -145,6 +167,13 @@
         Sickness *sickness = self.fetchedResultsController.fetchedObjects[i];
         sickLabel.text = sickness.sicknessName;
         
+        ////////////计算疾病的主症和兼症的占比
+        sickness.mainSymPersent = @(18);
+        sickness.secondarySymPersent = @(10);
+        [self.tempSick addObject:sickness];
+        
+        
+        
         // 将进度条和疾病名称添加到sickView
         [sickView addSubview:circleChart];
         [sickView addSubview:sickLabel];
@@ -159,7 +188,7 @@
     NSLog(@"查询结果变化了");
 }
 
-// 查询
+// 查询数据库
 - (void)fetchResultWithEntityName:(NSString *)entity sortDescriptorWithKey:(NSString *)key
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
@@ -167,6 +196,35 @@
     request.sortDescriptors = @[sort];
     _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[QXCoreDataTools sharedCoreDataTools].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     [self.fetchedResultsController performFetch:NULL];
+}
+
+// 点击确定按钮
+- (void)confirmBtnClick:(UIButton *)btn
+{
+    NSMutableArray *selectedBtns = [NSMutableArray array];
+    // 1.获取所有状态为selected的按钮
+    for (UIButton *btn in self.symptomBtnArray) {
+        if (btn.selected == YES) {
+            [selectedBtns addObject:btn];
+        }
+    }
+    // 2.算出在一个疾病中每个症状占比是多少
+        // 每个主症占比
+        // 每个兼症占比
+    // 3.将被选中的症状占比相加，得到总占比
+    for (UIButton *btn in selectedBtns) {
+        for (int i = 0; i < self.tempSick.count; i++) {
+        
+            if (btn.tag == [[self.tempSick[i] sicknessID]intValue]) {
+                Sickness *sickness = self.tempSick[i];
+                
+            }
+        }
+
+    }
+    // 4.将总占比传给进度条
+    
+    
 }
 
 // 点击症状按钮

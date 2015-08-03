@@ -2,7 +2,7 @@
 //  Sickness.m
 //  demo
 //
-//  Created by xdtc on 15/8/2.
+//  Created by xdtc on 15/8/3.
 //  Copyright (c) 2015年 xdtc. All rights reserved.
 //
 
@@ -12,8 +12,11 @@
 
 @implementation Sickness
 
-@dynamic sicknessName;
 @dynamic sicknessID;
+@dynamic sicknessName;
+@dynamic mainSymPersent;
+@dynamic secondarySymPersent;
+@dynamic selectedCount;
 @dynamic symptoms;
 
 @end

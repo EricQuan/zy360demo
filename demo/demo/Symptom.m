@@ -2,7 +2,7 @@
 //  Symptom.m
 //  demo
 //
-//  Created by xdtc on 15/8/2.
+//  Created by xdtc on 15/8/3.
 //  Copyright (c) 2015年 xdtc. All rights reserved.
 //
 
@@ -12,9 +12,9 @@
 
 @implementation Symptom
 
-@dynamic symptomName;
-@dynamic symptomID;
 @dynamic isMainSymptom;
+@dynamic symptomID;
+@dynamic symptomName;
 @dynamic sickness;
 
 @end

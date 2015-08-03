@@ -2,7 +2,7 @@
 //  Sickness.h
 //  demo
 //
-//  Created by xdtc on 15/8/2.
+//  Created by xdtc on 15/8/3.
 //  Copyright (c) 2015年 xdtc. All rights reserved.
 //
 
@@ -13,8 +13,11 @@
 
 @interface Sickness : NSManagedObject
 
-@property (nonatomic, retain) NSString * sicknessName;
 @property (nonatomic, retain) NSNumber * sicknessID;
+@property (nonatomic, retain) NSString * sicknessName;
+@property (nonatomic, retain) NSNumber * mainSymPersent;
+@property (nonatomic, retain) NSNumber * secondarySymPersent;
+@property (nonatomic, retain) NSNumber * selectedCount;
 @property (nonatomic, retain) NSSet *symptoms;
 @end
 

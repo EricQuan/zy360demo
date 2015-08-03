@@ -38,8 +38,8 @@
 		3A3E50921B6DF5260037FB02 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50901B6DF5260037FB02 /* Model.xcdatamodeld */; };
 		3A3E50951B6DF6C20037FB02 /* QXCoreDataTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50941B6DF6C20037FB02 /* QXCoreDataTools.m */; };
 		3A3E50A91B6E009B0037FB02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E50A81B6E009B0037FB02 /* CoreData.framework */; };
-		3A3E50AC1B6E06910037FB02 /* Sickness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50AB1B6E06910037FB02 /* Sickness.m */; };
-		3A3E50AF1B6E06920037FB02 /* Symptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E50AE1B6E06920037FB02 /* Symptom.m */; };
+		3AF3E4001B6F44B3006EA964 /* Sickness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3E3FF1B6F44B3006EA964 /* Sickness.m */; };
+		3AF3E4031B6F44B4006EA964 /* Symptom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3E4021B6F44B4006EA964 /* Symptom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,10 +110,10 @@
 		3A3E50931B6DF6C20037FB02 /* QXCoreDataTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QXCoreDataTools.h; sourceTree = "<group>"; };
 		3A3E50941B6DF6C20037FB02 /* QXCoreDataTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXCoreDataTools.m; sourceTree = "<group>"; };
 		3A3E50A81B6E009B0037FB02 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		3A3E50AA1B6E06910037FB02 /* Sickness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sickness.h; path = demo/Sickness.h; sourceTree = "<group>"; };
-		3A3E50AB1B6E06910037FB02 /* Sickness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sickness.m; path = demo/Sickness.m; sourceTree = "<group>"; };
-		3A3E50AD1B6E06920037FB02 /* Symptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Symptom.h; path = demo/Symptom.h; sourceTree = "<group>"; };
-		3A3E50AE1B6E06920037FB02 /* Symptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Symptom.m; path = demo/Symptom.m; sourceTree = "<group>"; };
+		3AF3E3FE1B6F44B3006EA964 /* Sickness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sickness.h; path = demo/Sickness.h; sourceTree = "<group>"; };
+		3AF3E3FF1B6F44B3006EA964 /* Sickness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sickness.m; path = demo/Sickness.m; sourceTree = "<group>"; };
+		3AF3E4011B6F44B4006EA964 /* Symptom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Symptom.h; path = demo/Symptom.h; sourceTree = "<group>"; };
+		3AF3E4021B6F44B4006EA964 /* Symptom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Symptom.m; path = demo/Symptom.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,10 +142,10 @@
 		3A3DD36F1B6880320037745C = {
 			isa = PBXGroup;
 			children = (
-				3A3E50AD1B6E06920037FB02 /* Symptom.h */,
-				3A3E50AE1B6E06920037FB02 /* Symptom.m */,
-				3A3E50AA1B6E06910037FB02 /* Sickness.h */,
-				3A3E50AB1B6E06910037FB02 /* Sickness.m */,
+				3AF3E4011B6F44B4006EA964 /* Symptom.h */,
+				3AF3E4021B6F44B4006EA964 /* Symptom.m */,
+				3AF3E3FE1B6F44B3006EA964 /* Sickness.h */,
+				3AF3E3FF1B6F44B3006EA964 /* Sickness.m */,
 				3A3DD37A1B6880320037745C /* demo */,
 				3A3DD3941B6880320037745C /* demoTests */,
 				3A3DD3791B6880320037745C /* Products */,
@@ -363,12 +363,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A3E50AC1B6E06910037FB02 /* Sickness.m in Sources */,
+				3AF3E4001B6F44B3006EA964 /* Sickness.m in Sources */,
 				3A3DD3CA1B68C8330037745C /* PNLineChart.m in Sources */,
 				3A3DD3C51B68C8330037745C /* PNBarChart.m in Sources */,
 				3A3DD3C81B68C8330037745C /* PNColor.m in Sources */,
 				3A3DD3CF1B68C8330037745C /* PNRadarChart.m in Sources */,
-				3A3E50AF1B6E06920037FB02 /* Symptom.m in Sources */,
+				3AF3E4031B6F44B4006EA964 /* Symptom.m in Sources */,
 				3A3DD3D01B68C8330037745C /* PNRadarChartDataItem.m in Sources */,
 				3A3DD3841B6880320037745C /* ViewController.m in Sources */,
 				3A3DD3C41B68C8330037745C /* PNBar.m in Sources */,
